@@ -36,6 +36,8 @@ protected:
     static int xB, yB;
 
     static bool mapy;
+    static bool mapy2;
+    static bool mapy1;
     static bool car;
 
 public:
@@ -96,6 +98,8 @@ bool Player::flag5 = true;
 bool Player::AI = true;
 bool Player::bot = false;
 bool Player::mapy = true;// random();
+bool Player::mapy1 = false;// random();
+bool Player::mapy2 = false;// random();
 bool Player::car = true;//random();
 string Player::name = "";
 
