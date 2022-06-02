@@ -8,6 +8,4 @@ Player
 Player
 5
 Player
-2
-3
-ibi
+
