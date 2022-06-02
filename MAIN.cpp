@@ -114,7 +114,7 @@ int Player::getRandomIntExcludingRange(int start, int end, int start_range, int 
 
 void Player::draw()
 {
-    cout<<"bla: "<<Drawbullet1<<endl;
+    //cout<<"bla: "<<Drawbullet1<<endl;
     if (Player::level == 0)
         Player::mapy = true;
     else
