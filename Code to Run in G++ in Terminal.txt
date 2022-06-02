@@ -1,0 +1,1 @@
+g++ MAIN.cpp util.cpp -o GAME-lopengl32 -lglew32 -lfreeglut -lglu32 -lgdi32 -lwinmm
