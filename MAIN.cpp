@@ -150,19 +150,28 @@ void Player::draw()
 }
 
 
-void Player::Timer1(int m)
+int Player::Timer1(int m) //should be int because we have to retrun so we have to change it from freeglut.h library as well
 {
     if (Drawbullet1)
     {
         shoot1();
+        glutTimerFunc(100, Player::Timer1, 0);   
     }
-    glutTimerFunc(100, Player::Timer1, 0);
+    else 
+    {
+        return 0;
+    }
 }
 void Player::Timer2(int m)
 {
     if (Drawbullet)
-        shoot();
-    glutTimerFunc(100, Player::Timer2, 0);
+    {   shoot();
+        glutTimerFunc(100, Player::Timer2, 0);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 void Player::Timer(int m)
@@ -180,9 +189,15 @@ void Player::Timer(int m)
     {
         shoot2();
     }
+    else
+    {
+        return 0;
+    }
     if (bot)
         AImove();
-
+    else
+        return 0;
+    
     // once again we tell the library to call our Timer function after next 1000/FPS
     glutTimerFunc(100, Player::Timer, 0);
 }
