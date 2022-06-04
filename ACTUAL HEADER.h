@@ -71,9 +71,9 @@ public:
 
     static int getRandomIntExcludingRange(int start, int end, int start_range, int end_range);
     static void NonPrintableKeys(int key, int x, int y);
-    static void Timer(int m);
-    static void Timer1(int m);
-    static void Timer2(int m);
+    static int Timer(int m);
+    static int Timer1(int m);
+    static int Timer2(int m);
     static void PrintableKeys(unsigned char key, int x, int y);
     static void MouseClicked(int button, int state, int x, int y);
 };
