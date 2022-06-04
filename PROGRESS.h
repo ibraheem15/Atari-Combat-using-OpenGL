@@ -49,10 +49,10 @@ void Progress::readScore()
     {
         if (curline == 1)
         {
-            Player::score = stoi(line);
+            Player::score1 = stoi(line);
         }
         else if (curline == 2)
-            Player::score1 = stoi(line);
+            Player::score = stoi(line);
         curline++;
     }
     fout.close();
