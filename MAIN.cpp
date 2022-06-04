@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
 
     glutMouseFunc(Player::MouseClicked);
 
-    // PlaySound(TEXT("mixkit-game-level-music-689.wav"), NULL, SND_ASYNC | SND_LOOP);
+     PlaySound(TEXT("mixkit-game-level-music-689.wav"), NULL, SND_ASYNC | SND_LOOP);
 
     // now handle the control to library and it will call our registered functions when
     // it deems necessary...
