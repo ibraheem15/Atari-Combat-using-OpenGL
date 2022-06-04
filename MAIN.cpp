@@ -2,6 +2,7 @@
  **  Ibraheem Rehman  **
  **  SE-Q    21i-1102 **
  ***********************/
+
 #include <iso646.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -115,7 +116,6 @@ int Player::getRandomIntExcludingRange(int start, int end, int start_range, int 
 
 void Player::draw()
 {
-    //cout<<"bla: "<<Drawbullet1<<endl;
     if (Player::level == 0)
         Player::mapy = true;
     else
@@ -126,7 +126,7 @@ void Player::draw()
     glClear(GL_COLOR_BUFFER_BIT);
     drawCar();
 
-    if (mapy || bot ||mapy1)
+    if (mapy || bot || mapy1)
     {
         Map::drawMap();
     }
@@ -149,24 +149,43 @@ void Player::draw()
     glutPostRedisplay();
 }
 
-
-int Player::Timer1(int m) //should be int because we have to retrun so we have to change it from freeglut.h library as well
+int Player::Timer1(int m)
 {
+    // condition
     if (Drawbullet1)
     {
         shoot1();
-        glutTimerFunc(100, Player::Timer1, 0);   
+        glutTimerFunc(70, Player::Timer1, 0);
     }
-    else 
+    else
     {
         return 0;
     }
 }
-void Player::Timer2(int m)
+
+int Player::Timer2(int m)
 {
     if (Drawbullet)
-    {   shoot();
-        glutTimerFunc(100, Player::Timer2, 0);
+    {
+        shoot();
+        glutTimerFunc(70, Player::Timer2, 0);
+    }
+    else
+    {
+        return 0;
+    }
+}
+int Player::Timer3(int m)
+{
+    if (Drawbullet2 && AIlevel==0)
+    {
+        shoot2();
+        glutTimerFunc(70, Player::Timer3, 0);
+    }
+    else if(Drawbullet2 && AIlevel==1)
+    {
+        shoot2();
+        glutTimerFunc(30, Player::Timer3, 0);
     }
     else
     {
@@ -174,32 +193,25 @@ void Player::Timer2(int m)
     }
 }
 
-void Player::Timer(int m)
+int Player::Timer(int m)
 {
 
-    
-    /* if (Drawbullet)
-        shoot(); */
-
-    /* if (Drawbullet1)
+    if (bot && AIlevel==0)
     {
-        shoot1();
-    } */
-    if (Drawbullet2)
-    {
-        shoot2();
-    }
-    else
-    {
-        return 0;
-    }
-    if (bot)
         AImove();
+        glutTimerFunc(100, Player::Timer, 0);
+    }
+    else if (bot && AIlevel==1)
+    {
+        AImove();
+        glutTimerFunc(50, Player::Timer, 0);
+    }
     else
+    {
         return 0;
-    
+    }
+
     // once again we tell the library to call our Timer function after next 1000/FPS
-    glutTimerFunc(100, Player::Timer, 0);
 }
 
 void SetCanvasSize(int width, int height)
@@ -217,7 +229,7 @@ int main(int argc, char *argv[])
     Player p1, p2;
     p1.setName("Ibraheem");
     p2.setName("Abuzar");
-   
+
     int width = 1020, height = 840; // i have set my window size to be 800 x 600
 
     InitRandomizer();                              // seed the random number generator...
@@ -237,12 +249,11 @@ int main(int argc, char *argv[])
     glutDisplayFunc(menu.StartMenu);           // tell library which function to call for drawing Canvas.
                                                // glutDisplayFunc(p2.drawCar); // tell library which function to call for drawing Canvas.
 
-
     // glutTimerFunc(1000.0, Player::Timer, 0); //  This function tells the library to call our Timer function after 1000.0/FPS milliseconds...
 
     glutMouseFunc(Player::MouseClicked);
-    
-    PlaySound(TEXT("mixkit-game-level-music-689.wav"), NULL, SND_ASYNC | SND_LOOP);
+
+    // PlaySound(TEXT("mixkit-game-level-music-689.wav"), NULL, SND_ASYNC | SND_LOOP);
 
     // now handle the control to library and it will call our registered functions when
     // it deems necessary...
