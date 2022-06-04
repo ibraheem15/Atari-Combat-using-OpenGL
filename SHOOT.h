@@ -237,6 +237,7 @@ void Player::shoot2()
                 xB = 100;
                 glClear(GL_COLOR_BUFFER_BIT); // Update the colors
                 score++;
+                Progress::writeScore();
 
                 glutDisplayFunc(draw);
                 glutSwapBuffers();
@@ -266,5 +267,6 @@ void Player::AIshoot()
     xB = x1 + 25;
     yB = y1 + 20;
     glutDisplayFunc(draw);
+    glutTimerFunc(100, Player::Timer3, 0);
     glutSwapBuffers(); // do not modify this line..
 }
