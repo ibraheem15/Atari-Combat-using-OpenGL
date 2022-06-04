@@ -2,20 +2,19 @@
  **  Ibraheem Rehman  **
  **  SE-Q    21i-1102 **
  ***********************/
- #include "ACTUAL HEADER.h"
+#include "ACTUAL HEADER.h"
 #include "util.h"
 bool once = true;
 void Map::drawMap()
 {
-    
-        Progress::readScore();
-        once = false;
-    
+
+    Progress::readScore();
+    once = false;
+
     if (Player::score1 == 1)
     {
         DrawString(150, 800, "Score = 1", colors[MISTY_ROSE]);
-           // Progress::writeScore();
-
+        // Progress::writeScore();
     }
     else if (Player::score1 == 2)
         DrawString(150, 800, "Score = 2", colors[MISTY_ROSE]);
@@ -26,10 +25,24 @@ void Map::drawMap()
     else if (Player::score1 == 5)
     {
         DrawString(150, 800, "Score = 5", colors[MISTY_ROSE]);
-        if (bot || mapy1 )
+        if (bot || mapy1)
         {
-            glutDisplayFunc(Menu::GameOver);
-            glutSwapBuffers(); // do not modify this line..
+            if (AIlevel == 0 && bot )
+            {
+                AIlevel = 1;
+                Player::score1 = 0;
+                Player::score = 0;
+                Progress::writeScore();
+
+                glutDisplayFunc(draw);
+                glutSwapBuffers();
+
+            }
+            else
+            {
+                glutDisplayFunc(Menu::GameOver);
+                glutSwapBuffers(); // do not modify this line..
+            }
         }
         else
         {
@@ -37,7 +50,7 @@ void Map::drawMap()
             score = 0;
             score1 = 0;
             mapy = false;
-            mapy2 =true;
+            mapy2 = true;
             Progress::writeScore();
             glutDisplayFunc(Menu::draw);
         }
@@ -51,8 +64,7 @@ void Map::drawMap()
     if (Player::score == 1)
     {
         DrawString(750, 800, "Score = 1", colors[MISTY_ROSE]);
-            Progress::writeScore();
-
+        Progress::writeScore();
     }
     else if (Player::score == 2)
         DrawString(750, 800, "Score = 2", colors[MISTY_ROSE]);
@@ -63,10 +75,24 @@ void Map::drawMap()
     else if (Player::score == 5)
     {
         DrawString(750, 800, "Score = 5", colors[MISTY_ROSE]);
-        if (bot || mapy1 )
+        if (bot || mapy1)
         {
-            glutDisplayFunc(Menu::GameOver);
-            glutSwapBuffers(); // do not modify this line..
+            if (AIlevel == 0 && bot)
+            {
+                AIlevel = 1;
+                Player::score1 = 0;
+                Player::score = 0;
+                Progress::writeScore();
+
+                glutDisplayFunc(draw);
+                glutSwapBuffers();
+
+            }
+            else
+            {
+                glutDisplayFunc(Menu::GameOver);
+                glutSwapBuffers(); // do not modify this line..
+            }
         }
         else
         {
@@ -75,7 +101,7 @@ void Map::drawMap()
             score1 = 0;
             mapy = false;
             mapy1 = false;
-            mapy2 =true;
+            mapy2 = true;
             Progress::writeScore();
 
             glutDisplayFunc(Menu::draw);
@@ -147,9 +173,9 @@ void Map::drawMap()
 
 void Map::drawMap1()
 {
-        Progress::readScore();
+    Progress::readScore();
 
-    //cout<<"mapy2: "<<mapy2<<endl;
+    // cout<<"mapy2: "<<mapy2<<endl;
     if (Player::score1 == 1)
     {
         DrawString(150, 800, "Score = 1", colors[MISTY_ROSE]);
@@ -164,10 +190,10 @@ void Map::drawMap1()
     {
         DrawString(150, 800, "Score = 5", colors[MISTY_ROSE]);
         if (mapy || mapy2)
-            {
-                cout<<"bla"<<endl;
-                glutDisplayFunc(Menu::GameOver);
-            }
+        {
+            cout << "bla" << endl;
+            glutDisplayFunc(Menu::GameOver);
+        }
         else
         {
             level--;
@@ -199,10 +225,10 @@ void Map::drawMap1()
     {
         DrawString(750, 800, "Score = 5", colors[MISTY_ROSE]);
         if (mapy || mapy2)
-            {
-                cout<<"bla"<<endl;
-                glutDisplayFunc(Menu::GameOver);
-            }
+        {
+            cout << "bla" << endl;
+            glutDisplayFunc(Menu::GameOver);
+        }
         else
         {
             level--;
