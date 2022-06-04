@@ -22,6 +22,7 @@ using namespace std;
 #include "MOVEMENT.h"
 #include "MENU.h"
 #include "FILE HANDLING.h"
+#include "PROGRESS.h"
 
 int Player::random()
 {
