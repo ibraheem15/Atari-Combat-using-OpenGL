@@ -10,7 +10,7 @@ void Map::drawMap()
 
     Progress::readScore();
     once = false;
-
+    //bot number 1
     if (Player::score1 == 1)
     {
         DrawString(150, 800, "Score = 1", colors[MISTY_ROSE]);
@@ -27,7 +27,7 @@ void Map::drawMap()
         DrawString(150, 800, "Score = 5", colors[MISTY_ROSE]);
         if (bot || mapy1)
         {
-            if (AIlevel == 0 && bot )
+            if (AIlevel == 0 && bot)
             {
                 AIlevel = 1;
                 Player::score1 = 0;
@@ -36,10 +36,10 @@ void Map::drawMap()
 
                 glutDisplayFunc(draw);
                 glutSwapBuffers();
-
             }
             else
             {
+                Progress::endScore();
                 glutDisplayFunc(Menu::GameOver);
                 glutSwapBuffers(); // do not modify this line..
             }
@@ -54,13 +54,13 @@ void Map::drawMap()
             Progress::writeScore();
             glutDisplayFunc(Menu::draw);
         }
-        // glutSwapBuffers(); // do not modify this line..
     }
     else
     {
         DrawString(150, 800, "Score = 0", colors[MISTY_ROSE]);
     }
 
+    //bot number 2
     if (Player::score == 1)
     {
         DrawString(750, 800, "Score = 1", colors[MISTY_ROSE]);
@@ -86,10 +86,11 @@ void Map::drawMap()
 
                 glutDisplayFunc(draw);
                 glutSwapBuffers();
-
             }
             else
             {
+                Progress::endScore();
+
                 glutDisplayFunc(Menu::GameOver);
                 glutSwapBuffers(); // do not modify this line..
             }
@@ -175,7 +176,6 @@ void Map::drawMap1()
 {
     Progress::readScore();
 
-    // cout<<"mapy2: "<<mapy2<<endl;
     if (Player::score1 == 1)
     {
         DrawString(150, 800, "Score = 1", colors[MISTY_ROSE]);
@@ -192,6 +192,8 @@ void Map::drawMap1()
         if (mapy || mapy2)
         {
             cout << "bla" << endl;
+            Progress::endScore();
+
             glutDisplayFunc(Menu::GameOver);
         }
         else
@@ -227,6 +229,8 @@ void Map::drawMap1()
         if (mapy || mapy2)
         {
             cout << "bla" << endl;
+            Progress::endScore();
+
             glutDisplayFunc(Menu::GameOver);
         }
         else
