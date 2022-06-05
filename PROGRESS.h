@@ -19,15 +19,11 @@ void Progress::writeScore()
     {
         if (curline == 1)
         {
-            // cout << Player::score << endl;
             line = SCORE1;
-            // cout << "bla" << endl;
         }
         else if (curline == 2)
         {
-            // cout << Player::score1 << endl;
             line = SCORE;
-            // cout << "bla1" << endl;
         }
         line += "\n";
         fileout << line;
@@ -57,3 +53,36 @@ void Progress::readScore()
     }
     fout.close();
 }
+
+void Progress::endScore()
+{
+    fstream fout;
+    fout.open("Pro.txt"); //, ios::in | ios::out);
+    ofstream fileout("temp.txt");
+    string line;
+    string SCORE = "0";
+    string SCORE1 = "0";
+    int curline = 1;
+    int bla;
+    while (fout >> line)
+    {
+        if (curline == 1)
+        {
+            line = SCORE1;
+        }
+        else if (curline == 2)
+        {
+            line = SCORE;
+        }
+        line += "\n";
+        fileout << line;
+
+        curline++;
+    }
+    fout.close();
+    fileout.close();
+    remove("Pro.txt");
+    rename("temp.txt", "Pro.txt");
+}
+
+
