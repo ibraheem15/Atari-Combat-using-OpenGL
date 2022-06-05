@@ -119,6 +119,7 @@ public:
     // Progress();
     static void writeScore();
     static void readScore();
+    static void endScore();
 };
 class Map : public Progress
 {
