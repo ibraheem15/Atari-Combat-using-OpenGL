@@ -77,23 +77,9 @@ void Map::drawMap()
         DrawString(750, 800, "Score = 5", colors[MISTY_ROSE]);
         if (bot || mapy1)
         {
-            if (AIlevel == 0 && bot)
-            {
-                AIlevel = 1;
-                Player::score1 = 0;
-                Player::score = 0;
-                Progress::writeScore();
-
-                glutDisplayFunc(draw);
-                glutSwapBuffers();
-            }
-            else
-            {
-                Progress::endScore();
-
-                glutDisplayFunc(Menu::GameOver);
-                glutSwapBuffers(); // do not modify this line..
-            }
+             Progress::endScore();
+             glutDisplayFunc(Menu::GameOver);
+             glutSwapBuffers(); // do not modify this line..
         }
         else
         {
